@@ -18,6 +18,15 @@ class TeamDatabase
         $this->database->query("INSERT INTO teams (name) VALUES ('{$team->name}')");
     }
 
+    public function update(Team $team)
+    {
+        if (!$team->id) {
+            throw new \BadMethodCallException('Team needs id when updating');
+        }
+
+        $this->database->query("UPDATE teams SET name = '{$team->name}' WHERE id = '{$team->id}'");
+    }
+
     public function all(): array
     {
         $resultset = $this->database->query("SELECT t.id as _id, t.name as _name FROM teams ORDER BY m.id ASC'");

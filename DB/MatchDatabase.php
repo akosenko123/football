@@ -19,10 +19,26 @@ class MatchDatabase
         $this->database->query("INSERT INTO matches (date, name, team1_id, team2_id) VALUES('{$match->date}', '{$match->name}', '{$match->team1->id}', '{$match->team2->id}')");
     }
 
+    public function update(Match $match)
+    {
+        if (!$match->id) {
+            throw new \BadMethodCallException('Match needs id when updating');
+        }
+
+        $this->database->query(
+            "UPDATE matches SET 
+                   data = '{$match->date}', 
+                   name = '{$match->name}', 
+                   team1_id = '{$match->team1->id}', 
+                   team2_id = '{$match->team2->id}' 
+                WHERE id = '{$match->id}'"
+        );
+    }
+
     public function all(): array
     {
         $resultset = $this->database->query(
-            "SELECT m.id as _id, m.name as _name, m.date as _date, t1.name AS _team1_name, t2.name AS _team2_name 
+            "SELECT m.id as _id, m.name as _name, m.date as _date, t1.name AS _team1_name, t1.id AS _team1_id, t2.name AS _team2_name, t2.id AD _team2_id 
                     FROM matches m 
                     JOIN teams t1 ON t1.id = m.team1_id
                     JOIN teams t2 ON t2.id = m.team2_id
@@ -41,7 +57,7 @@ class MatchDatabase
     public function get($id): ?Match
     {
         $resultset = $this->database->query(
-            "SELECT m.id as _id, m.name as _name, m.date as _date, t1.name AS _team1_name, t2.name AS _team2_name 
+            "SELECT m.id as _id, m.name as _name, m.date as _date, t1.name AS _team1_name, t1.id AS _team1_id, t2.name AS _team2_name, t2.id AD _team2_id 
                     FROM matches m 
                     JOIN teams t1 ON t1.id = m.team1_id
                     JOIN teams t2 ON t2.id = m.team2_id
@@ -66,8 +82,10 @@ class MatchDatabase
         $match->team1 = new Team();
         $match->team2 = new Team();
         $match->name = $row['_name'];
-        $match->team1->name = $row['team1_name'];
-        $match->team2->name = $row['team2_name'];
+        $match->team1->id = $row['_team1_id'];
+        $match->team1->name = $row['_team1_name'];
+        $match->team2->id = $row['_team2_id'];
+        $match->team2->name = $row['_team2_name'];
 
         return $match;
     }
