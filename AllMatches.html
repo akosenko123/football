@@ -1,0 +1,44 @@
+<html>
+<head>
+<link rel="stylesheet" href="design1.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
+<header>
+<h1 align = "center">Endava Football Championship</h1>
+</header>
+</head>
+<body>
+<div class="container box">
+ <h2 align = "center" > All Matches</h2> 
+  <div align="center">
+     <button type="button" name="add" id="add" class="btn btn-info">Add new match</button>
+    </div>
+  <br />
+   <div class="table-responsive">
+  <br />
+  
+  <br />
+    <div id="alert_message"></div>
+  <table id="user_data" class="table table-bordered table-striped" align="center" >
+   <thead align="center">
+    <tr class="heading">
+		<th rowspan=2> Date(YY-MM-DD)</th>
+		<th rowspan=2 >Match</th >
+		<th colspan=2>Teams</th>
+		<th rowspan=2>Actions</th>
+    </tr>
+	<tr>
+	  <th>Team 1</th>
+	  <th>Team 2</th> 
+	</tr>
+   </thead>
+      <tbody></tbody>
+  </table>
+<script src="js/loadData.js"></script>
+<script src="js/deleteMatch.js"></script>
+<script src="js/createMatch.js"></script>
+<script src="js/editMatch.js"></script>
+</body>
+</html>
