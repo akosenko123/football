@@ -7,16 +7,16 @@ $matchDb = new \DB\MatchDatabase();
 $teamDb = new \DB\TeamDatabase();
 
 switch ($request->getMethod()) {
-    case 'GET':
+    case 'GET': # GET matches.php
         $requestId = $request->getQueryData('id');
-        if ($requestId) {
+        if ($requestId) { # GET matches.php?id=1
             echo json_encode($matchDb->all());
         } else {
             echo json_encode($matchDb->get($requestId));
         }
         break;
 
-    case 'POST':
+    case 'POST': #POST matches.php, POST matches.php?id=1
         $requestId = $request->getQueryData('id');
         $match = $requestId ? $matchDb->get($id) : new \Model\Match();
 
@@ -28,8 +28,7 @@ switch ($request->getMethod()) {
         $matchDb->create($match);
         echo json_encode($match);
         break;
-    case 'PUT':
-    case 'DELETE':
+    case 'DELETE': # DELETE matches.php?id=1
         break;
 }
 
