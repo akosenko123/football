@@ -16,6 +16,8 @@ class TeamDatabase
     public function create(Team $team)
     {
         $this->database->query("INSERT INTO teams (name) VALUES ('{$team->name}')");
+
+        return $this->database->last_insert();
     }
 
     public function update(Team $team)

@@ -17,6 +17,8 @@ class MatchDatabase
     public function create(Match $match)
     {
         $this->database->query("INSERT INTO matches (date, name, team1_id, team2_id) VALUES('{$match->date}', '{$match->name}', '{$match->team1->id}', '{$match->team2->id}')");
+
+        return $this->database->last_insert();
     }
 
     public function update(Match $match)
