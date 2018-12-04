@@ -1,0 +1,64 @@
+<html>
+<head>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background: #900;
+      padding: 10px 20px;
+    }
+
+    header a {
+      text-decoration: none;
+    }
+
+    header a:hover {
+      text-decoration: underline;
+    }
+
+    header a.endava-logo {
+      color: white;
+      font-weight: bold;
+      font-size: 19px;
+      display: inline-block;
+      float: left;
+      height: 30px;
+      background-image: url('soccer.svg');
+      background-size: 20px 20px;
+      background-repeat: no-repeat;
+      padding-left: 30px;
+      margin-top: 13px;
+    }
+
+    header ul {
+      display: block;
+      text-align: right;
+    }
+
+    header ul li {
+      display: inline-block;
+      padding: 0 5px;
+    }
+    header ul li:not(:last-child) {
+      border-right: 1px white solid;
+    }
+
+    header ul a {
+      color: white;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <a href="matches.php" class="endava-logo">Endava footbal championship</a>
+  <ul>
+    <li><a href="matches.php">Matches</a></li>
+    <li><a href="team.php">Team</a></li>
+    <li><a href="players.php">Players</a></li>
+  </ul>
+</header>
+</body>
+</html>
